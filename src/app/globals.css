@@ -1,0 +1,151 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Archivo", "Arial Black", sans-serif;
+  --color-ink: #0e0e10;
+  --color-bone: #f2f0ea;
+  --color-pdip: #e31e24;
+  --animate-marquee: marquee 22s linear infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: var(--color-pdip);
+  color: var(--color-bone);
+}
+
+/* Hero entrance animations (pure CSS, SSR-safe) */
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-mask {
+  from {
+    opacity: 0;
+    transform: translateY(110%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes hero-photo {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes hero-bar {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes hero-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes hero-arrow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(4px);
+  }
+}
+
+.hero-rise,
+.hero-mask-inner,
+.hero-pop,
+.hero-photo {
+  opacity: 0;
+}
+
+.hero-rise {
+  animation: hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-mask-inner {
+  display: block;
+  animation: hero-mask 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-pop {
+  animation: hero-pop 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-photo {
+  animation: hero-photo 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-bar {
+  transform: scaleY(0);
+  transform-origin: top;
+  animation: hero-bar 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+}
+
+.hero-float {
+  animation: hero-float 6s ease-in-out infinite;
+}
+
+.hero-arrow {
+  display: inline-block;
+  animation: hero-arrow 1.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise,
+  .hero-mask-inner,
+  .hero-pop,
+  .hero-photo,
+  .hero-bar,
+  .hero-float,
+  .hero-arrow {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
